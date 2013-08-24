@@ -400,74 +400,6 @@ if version >= 700
 
   "}}}
 
-  " *** PLUGINS ****************************************************
-  "{{{
-  """""""""""""""""""""""""""
-  """ http://www.vim.org/ """
-  """""""""""""""""""""""""""
-  "
-  " Align
-  " Alternate Files quickly
-  " NERD tree
-  " QuickBuf
-  " SuperTab
-
-    " Library Viewer
-    " ZoomWin
-    " Zip Handler
-    " WhereFrom
-    " Gnu Debugger Manager for Vim
-    " FlistTree
-    " Stubs
-    " AutoAlign suite
-    " Ctags Explorer
-
-  " Load plugin scripts when starting up
-  set loadplugins
-
-  " NERDTree Plugin
-  cab tree NERDTree
-  map <F3> <ESC>:NERDTreeToggle<CR>
-  let NERDTreeChDirMode=0
-  let NERDTreeWinPos='left'
-  let NERDTreeQuitOnOpen=0
-  let NERDTreeMouseMode=2
-
-  " QuickBuf
-  let g:qb_hotkey = "<F2>"
-
-  " Alternate Files quickly
-  let g:alternateSearchPath      = 'sfr:../source,sfr:../src,sfr:../include,sfr:../inc,sfr:../headers'
-  let g:alternateExtensions_h    = "c,cpp,cxx,cc,CC"
-  let g:alternateExtensions_H    = "C,CPP,CXX,CC"
-  let g:alternateExtensions_cpp  = "h,hpp"
-  let g:alternateExtensions_CPP  = "H,HPP"
-  let g:alternateExtensions_c    = "h"
-  let g:alternateExtensions_C    = "H"
-  let g:alternateExtensions_cxx  = "h"
-
-  " Taglist
-  let Tlist_Exist_OnlyWindow=1
-  map <F4> <ESC>:TlistToggle<CR>
-  let Tlist_Use_Right_Window = 1
-  let Tlist_WinWidth = 50
-
-  " OmniCppComplete
-  autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-  autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-  set completeopt=menu,menuone
-
-  let OmniCpp_NamespaceSearch = 2 " search namespaces in this and included files
-  let OmniCpp_GlobalScopeSearch = 1
-  let OmniCpp_ShowAccess = 1
-  let OmniCpp_ShowPrototypeInAbbr = 1 " show function prototype (i.e. parameters) in popup window
-  let OmniCpp_MayCompleteDot = 1 " autocomplete with .
-  let OmniCpp_MayCompleteArrow = 1 " autocomplete with ->
-  let OmniCpp_MayCompleteScope = 1 " autocomplete with ::
-  let OmniCpp_SelectFirstItem = 2 " select first item (but don't insert)
-  let OmniCpp_LocalSearchDecl = 1 " don't require special style of function opening braces
-  "}}}
-
   " *** FUNCTIONS **************************************************
   "{{{
 
@@ -503,45 +435,6 @@ if version >= 700
     endif
   endfunction
 
-  " Append modeline after last line in buffer.
-  function! AppendModeline()
-    let save_cursor = getpos('.')
-    let append = ' vim: set tw='.&textwidth.' ts='.&tabstop.' sw='.&shiftwidth.' ft='.&filetype.' : '
-    $put =substitute(&commentstring, '%s', append, '')
-    call setpos('.', save_cursor)
-  endfunction
-
-  function! StripTrailingWhitespace()
-    call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
-  endfunction
-
-  function! CompleteTab(direction)
-    let prec = strpart( getline('.'), 0, col('.')-1 )
-    if prec =~ '^\s*$'
-      if "backward" == a:direction
-        return "\<bs>"
-      else
-        return "\<tab>"
-      endif
-    endif
-
-    if exists('&omnifunc') && &omnifunc == 'omni#cpp#complete#Main' && prec =~ '[\.>]\s*[~]\?[a-zA-Z_]*[(]\?$'
-      " Class completion... use normal direction
-      " Use this with omniCompletion
-      if "backward" == a:direction
-        return "\<c-p>"
-      else
-        return "\<c-n>"
-      endif
-    endif
-
-    " else use generic completion: last-seen / reverse-order
-    if "backward" == a:direction
-      return "\<c-n>"
-    else
-      return "\<c-p>"
-    endif
-  endfunction
   "}}}
 
   " *** AUTOCOMMANDS ***********************************************
@@ -571,11 +464,6 @@ if version >= 700
   autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
   autocmd BufWinLeave * call clearmatches()
-
-  autocmd FileWritePre * :call StripTrailingWhitespace()
-  autocmd FileAppendPre * :call StripTrailingWhitespace()
-  autocmd FilterWritePre * :call StripTrailingWhitespace()
-  autocmd BufWritePre * :call StripTrailingWhitespace()
 
   autocmd VimEnter * :call InitBackupDirs()
   "}}}
@@ -678,12 +566,6 @@ if version >= 700
 
   map <C-l> <ESC>:nohlsearch<CR>:call clearmatches()<CR>
 
-  " Map leader
-  let mapleader = "_"
-  map <Leader>s <ESC>:call StripTrailingWhitespace()<CR>
-  map <leader>w <ESC>:wa<cr>
-  map <Leader>c <ESC>:cd %:h<CR>
-
   map <F1> <Esc>
   imap <F1> <C-x><C-o>
   "}}}
@@ -709,25 +591,6 @@ if version >= 700
 
     "amenu 9990.55 &personal.-sep1-			       <Nop>
 
-  "}}}
-
-   " *** TAGS ******************************************************
-  "{{{
-
-    " tag file create by ctags
-    set tags=~/.vim/tags/tags
-    set tags+=./tags
-    set tags+=./.tags
-
-    " build tags of your own project with Ctrl-F12
-    map <C-F12> <ESC>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q .<CR>
-    map <C-F11> <ESC>:!cscope -b<CR><ESC>:cs add cscope.out<CR>
-    map <C-S-F12> <ESC>:!ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q -f ~/.vim/tags/tags /usr/include /usr/local/include<CR>
-
-    inoremap <tab> <c-r>=CompleteTab("forward")<cr>
-    inoremap <s-tab> <c-r>=CompleteTab("backward")<cr>
-
-    map gt g]
   "}}}
 
    " *** INTERESTING COMMANDS **************************************

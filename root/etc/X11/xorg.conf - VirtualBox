@@ -1,0 +1,95 @@
+# /etc/X11/xorg.conf (xorg X Window System server configuration file)
+
+Section "ServerLayout"
+    Identifier     "Default Layout"
+    Screen         "Default Screen" 0 0
+    InputDevice    "Generic Keyboard"
+    InputDevice    "Configured Mouse"
+EndSection
+
+Section "Files"
+    FontPath        "/usr/share/fonts/misc"
+    FontPath        "/usr/share/fonts/100dpi:unscaled"
+    FontPath        "/usr/share/fonts/75dpi:unscaled"
+    FontPath        "/usr/share/fonts/100dpi"
+    FontPath        "/usr/share/fonts/75dpi"
+    FontPath        "/usr/share/fonts/Type1"
+    FontPath        "/usr/share/fonts/TTF"
+EndSection
+
+Section "Module"
+    Load           "dbe"
+    Load           "bitmap"
+    Load           "ddc"
+    Load           "extmod"
+    Load           "freetype"
+    Load           "glx"
+    Load           "int10"
+    Load           "vbe"
+EndSection
+
+Section "InputDevice"
+    Identifier     "Generic Keyboard"
+    Driver         "kbd"
+    Option         "CoreKeyboard"
+    Option         "XkbRules" "xorg"
+    Option         "XkbModel" "pc105"
+    Option         "XkbLayout" "es"
+    Option         "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+
+Section "InputDevice"
+	Identifier	"Configured Mouse"
+    Driver      "vboxmouse"
+    Option      "CorePointer"
+EndSection
+
+Section "Monitor"
+	Identifier	"Configured Monitor"
+    Option  "DPMS"  "True"
+EndSection
+
+Section "Device"
+	Identifier	"Configured Video Device"
+	Driver		"vboxvideo"
+EndSection
+
+Section "Extensions"
+  Option "Composite" "Enable"
+  Option "RENDER" "On"
+  Option "DAMAGE" "On"
+EndSection
+
+Section "ServerFlags"
+  Option "DontZap"  "false"
+  Option "IgnoreABI" "True"
+EndSection
+
+### 4:3   -> 640x480 800x600 1024x768 1280x960 1400x1050
+### 16:9  -> 640x360 800x450 1024x576 1280x720 xxxxxxxxx
+### 16:10 -> 640x400 800x500 1024x640 1280x800 xxxxxxxxx 1440x900 1680x1050
+
+Section "Screen"
+	Identifier	"Default Screen"
+	Device		"Configured Video Device"
+	Monitor		"Configured Monitor"
+	DefaultDepth	24
+	SubSection  "Display"
+      Depth 8
+	  Modes "1400x1050" "1280x960" "1024x768"
+	EndSubSection
+	SubSection  "Display"
+      Depth 15
+	  Modes "1400x1050" "1280x960" "1024x768"
+	EndSubSection
+	SubSection  "Display"
+      Depth 16
+	  Modes "1400x1050" "1280x960" "1024x768"
+    EndSubSection
+    SubSection  "Display"
+      Depth 24
+	  Modes "1400x1050" "1280x960" "1024x768"
+    EndSubSection
+EndSection
+
+### End Of File

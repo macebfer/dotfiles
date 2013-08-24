@@ -1,0 +1,15 @@
+backup/*
+dev/*
+home/*
+media/*
+mnt/*
+opt/*
+proc/*
+root/*
+swapfs
+sys/*
+tmp/*
+var/lock/*
+var/run/*
+var/tmp/*
+*/lost\+found/*

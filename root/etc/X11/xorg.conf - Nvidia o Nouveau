@@ -1,0 +1,127 @@
+# /etc/X11/xorg.conf (xorg X Window System server configuration file)
+
+Section "ServerLayout"
+    Identifier     "Default Layout"
+    Screen         "Default Screen" 0 0
+    InputDevice    "Generic Keyboard"
+    InputDevice    "Configured Mouse"
+EndSection
+
+Section "Files"
+    FontPath        "/usr/share/fonts/misc"
+    FontPath        "/usr/share/fonts/100dpi:unscaled"
+    FontPath        "/usr/share/fonts/75dpi:unscaled"
+    FontPath        "/usr/share/fonts/100dpi"
+    FontPath        "/usr/share/fonts/75dpi"
+    FontPath        "/usr/share/fonts/Type1"
+    FontPath        "/usr/share/fonts/TTF"
+EndSection
+
+Section "Module"
+    Load           "dbe"
+    Load           "bitmap"
+    Load           "ddc"
+    Load           "extmod"
+    Load           "freetype"
+    Load           "glx"
+    Load           "int10"
+    Load           "vbe"
+EndSection
+
+Section "InputDevice"
+    Identifier     "Generic Keyboard"
+    Driver         "kbd"
+    Option         "CoreKeyboard"
+    Option         "XkbRules" "xorg"
+    Option         "XkbModel" "pc105"
+    Option         "XkbLayout" "es"
+    Option         "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+
+Section "InputDevice"
+    Identifier     "Configured Mouse"
+    Driver         "mouse"
+    Option         "CorePointer"
+    Option         "Device" "/dev/psaux"
+   #Option         "Device" "/dev/misc/psaux"
+    Option         "Protocol" "ImPS/2"
+   #Option         "ZAxisMapping" "4 5"
+   #Option         "Buttons" "5"
+EndSection
+
+Section "Monitor"
+  Identifier  "ASUS VW220TE"
+  VendorName  "ASUS"
+  ModelName   "VW220TE"
+  # 1680x1050 @ 85.00 Hz (GTF) hsync: 93.76 kHz; pclk: 214.51 MHz
+  Modeline "1680x1050_85.00"  214.51  1680 1800 1984 2288  1050 1051 1054 1103  -HSync +Vsync
+  # 1440x900  @ 85.00 Hz (GTF) hsync: 80.33 kHz; pclk: 156.79 MHz
+  Modeline "1440x900_85.00"  156.79  1440 1536 1696 1952  900 901 904 945  -HSync +Vsync
+  # 1280x800  @ 85.00 Hz (GTF) hsync:  7.22 kHz; pclk:   8.32 MHz
+  Modeline "1280x80_85.00"  8.32  1280 1120 1216 1152  80 81 84 85  -HSync +Vsync
+  HorizSync   30.0 - 82.0
+  VertRefresh 50.0 - 75.0
+  Option  "DPMS"  "True"
+EndSection
+
+Section "Device"
+    Identifier     "XFX Nvidia GeForce 6200 512Mb"
+   #Driver         "nvidia"
+    Driver         "nouveau"
+    Option         "VideoRam" "524288"
+    Option 	       "NoLogo" "True"
+    Option 	       "LoadKernelModule" "off"
+    Option 	       "RenderAccel" "True"
+    Option         "ConnectedMonitor" "CRT"
+   #Option         "ConnectedMonitor" "TV"
+   #Option         "ConnectedMonitor" "DFP"
+    Option         "TripleBuffer" "True"
+    Option         "BackingStore" "True"
+    Option 	       "DamageEvents" "True"
+    Option 	       "AddARGBGLXVisuals" "True"
+    Option 	       "AllowGLXWithComposite" "True"
+    Option         "DisableGLXRootClipping" "True"
+    Option         "DPMS" "True"
+    Option         "MTRR" "on"
+    Option         "MigrationHeuristic" "always"
+EndSection
+
+Section "Extensions"
+  Option "Composite" "Enable"
+  Option "RENDER" "On"
+  Option "DAMAGE" "On"
+EndSection
+
+Section "ServerFlags"
+  Option "DontZap"  "false"
+  Option "IgnoreABI" "True"
+EndSection
+
+### 4:3   -> 640x480 800x600 1024x768 1280x960 1400x1050
+### 16:9  -> 640x360 800x450 1024x576 1280x720 xxxxxxxxx
+### 16:10 -> 640x400 800x500 1024x640 1280x800 xxxxxxxxx 1440x900 1680x1050
+
+Section "Screen"
+  Identifier  "Default Screen"
+  Device  "XFX Nvidia GeForce 6200 512Mb"
+  Monitor "ASUS VW220TE"
+  DefaultDepth  24
+  SubSection  "Display"
+    Depth 8
+   	Modes "1680x1050" "1440x900" "1280x800"
+  EndSubSection
+  SubSection  "Display"
+    Depth 15
+    Modes "1680x1050" "1440x900" "1280x800"
+  EndSubSection
+  SubSection  "Display"
+    Depth 16
+    Modes "1680x1050" "1440x900" "1280x800"
+  EndSubSection
+  SubSection  "Display"
+    Depth 24
+    Modes "1680x1050" "1440x900" "1280x800"
+  EndSubSection
+EndSection
+
+### End Of File

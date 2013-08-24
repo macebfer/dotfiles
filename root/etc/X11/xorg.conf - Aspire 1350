@@ -1,0 +1,121 @@
+ # /etc/X11/xorg.conf (xorg X Window System server configuration file)
+
+Section "ServerLayout"
+    Identifier     "X.org Configured"
+    Screen         "Default Screen"
+    InputDevice    "Keyboard 105 Keys"
+    InputDevice    "Mouse 5 Buttons"
+    InputDevice    "Synaptics Touchpad"
+EndSection
+
+Section "Files"
+    ModulePath   "/usr/lib/xorg/modules"
+    FontPath     "/usr/share/fonts/misc/"
+    FontPath     "/usr/share/fonts/TTF/"
+    FontPath     "/usr/share/fonts/OTF/"
+    FontPath     "/usr/share/fonts/Type1/"
+    FontPath     "/usr/share/fonts/100dpi/"
+    FontPath     "/usr/share/fonts/75dpi/"
+EndSection
+
+Section "Module"
+    Load           "i2c"
+    Load           "bitmap"
+    Load           "ddc"
+    Load           "dri"
+    Load           "extmod"
+    Load           "freetype"
+    Load           "glx"
+    Load           "GLcore"
+    Load           "int10"
+    Load           "vbe"
+EndSection
+
+Section "InputDevice"
+    Identifier     "Keyboard 105 Keys"
+    Driver         "kbd"
+    Option         "CoreKeyboard"
+    Option         "XkbRules" "xorg"
+    Option         "XkbModel" "pc105"
+    Option         "XkbLayout" "es"
+    #Option        "XkbOptions" "terminate:ctrl_alt_bksp"
+EndSection
+
+Section "InputDevice"
+    Identifier    "Mouse 5 Buttons"
+    Driver        "mouse"
+    Option        "CorePointer"
+    Option        "Device" "/dev/input/mice"
+    Option        "Protocol" "ExplorerPS/2"
+    Option        "ZAxisMapping" "4 5"
+    Option        "Emulate3Buttons" "true"
+EndSection
+
+Section "InputDevice"
+    Identifier    "Synaptics Touchpad"
+    Driver        "synaptics"
+    Option        "SendCoreEvents" "true"
+    Option        "Device" "/dev/psaux"
+    Option        "Protocol" "auto-dev"
+    Option        "HorizScrollDelta" "0"
+EndSection
+
+Section "Monitor"
+	  Identifier	"Laptop Monitor"
+    Option  "DPMS"  "True"
+    HorizSync 31.5-48.5
+    VertRefresh 59.0-75.0
+EndSection
+
+Section "Device"
+    Identifier   "VIA Technologies, Inc. VT8378 [S3 UniChrome] Integrated Video"
+    Driver       "openchrome"
+    Option       "AccelMethod" "XAA"
+    Option       "EnableAGPDMA" "false"
+    Option       "XaaNoImageWriteRect"
+    Option       "VBEModes" "true"
+EndSection
+
+Section "Extensions"
+  Option "COMPOSITE" "On"
+  Option "RENDER" "On"
+  Option "DAMAGE" "On"
+EndSection
+
+Section "ServerFlags"
+  Option "DontZap"  "false"
+  Option "IgnoreABI" "True"
+EndSection
+
+Section "DRI"
+  Mode    0666
+EndSection
+
+### 4:3   -> 640x480 800x600 1024x768 1280x960 1400x1050
+### 16:9  -> 640x360 800x450 1024x576 1280x720 xxxxxxxxx
+### 16:10 -> 640x400 800x500 1024x640 1280x800 xxxxxxxxx 1440x900 1680x1050
+
+Section "Screen"
+	Identifier	"Default Screen"
+	Device      "VIA Technologies, Inc. VT8378 [S3 UniChrome] Integrated Video"
+	Monitor		  "Laptop Monitor"
+	DefaultDepth	24
+	SubSection  "Display"
+      Depth 8
+  	  Modes   "1024x768" "800x600" "640x480"
+	EndSubSection
+	SubSection  "Display"
+      Depth 15
+  	  Modes   "1024x768" "800x600" "640x480"
+	EndSubSection
+	SubSection  "Display"
+      Depth 16
+  	  Modes   "1024x768" "800x600" "640x480"
+    EndSubSection
+    SubSection  "Display"
+      Depth 24
+  	  Modes   "1024x768" "800x600" "640x480"
+    EndSubSection
+EndSection
+
+### End Of File
