@@ -11,7 +11,7 @@ import sys
 
 if (major == 3):
   config_file = os.environ.get('PYTHONSTARTUP')
-  history_file = os.path.expanduser('.python_history')
+  history_file = os.path.expanduser('.python3_history')
 
   # Write History
   def save_history(histfile=history_file):
