@@ -1,0 +1,33 @@
+### ~/.gitconfig
+################
+
+[core]
+  pager="less -+$LESS -FRX"
+  editor="vim"
+  #filemode=false
+
+[user]
+  name="macebfer"
+  email="macebfer@gmail.com"
+
+[color]
+  branch="auto"
+  diff="auto"
+  interactive="auto"
+  status="auto"
+  ui="auto"
+
+[alias]
+  a="add"
+  c="commit"
+  g="log --graph --abbrev-commit --pretty=oneline"
+  l="log"
+  s="status"
+
+[merge]
+  tool="meld"
+
+[pager]
+  status=true
+  show-branch=true
+
