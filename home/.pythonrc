@@ -1,0 +1,32 @@
+### ~/.pythonrc
+##################
+
+import os
+import readline
+import rlcompleter
+import atexit
+import sys
+
+(major, minor, micro, releaselevel, serial) = sys.version_info
+
+if (major == 3):
+  config_file = os.environ.get('PYTHONSTARTUP')
+  history_file = os.path.expanduser('.python_history')
+
+  # Write History
+  def save_history(histfile=history_file):
+      readline.write_history_file(history_file)
+
+  # Autocompletion
+  readline.parse_and_bind('tab: complete')
+
+  # Load History
+  if os.path.exists(history_file):
+      readline.read_history_file(history_file)
+
+  # Execute at exit
+  atexit.register(save_history)
+
+  print ("\nLoading " + config_file + " ...")
+
+

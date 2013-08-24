@@ -1,0 +1,98 @@
+! ~/.Xdefaults
+!-------------
+!! Changes will not be visible until you run
+!!! xrdb -load ~/.Xdefaults
+!!! xrdb -merge ~/.Xdefaults
+!---------------------------
+
+! UTF-8
+!------
+
+*locale: UTF-8
+
+! Xft settings
+!-------------
+
+xft.dpi:        100
+xft.antialias:  true
+xft.rgba:       rgb
+xft.hinting:    true
+xft.hintstyle:  hintfull
+xft.autohint:   true
+
+! rgb (normal LCD screen)
+! bgr (backwards LCD screen)
+! vrgb (LCD screen rotated clockwise) 
+! vbgr (LCD screen rotated counterclockwise)
+! hintslight | hintsmedium | hintsfull
+
+! xterm*settings
+!---------------
+
+xterm*geometry: 85x25
+xterm*background: black
+xterm*foreground: white
+xterm*title: terminal
+xterm*saveLines: 10000
+xterm*faceName: Monospace
+xterm*faceSize: 13
+xterm*dynamicColors:      true
+xterm*eightBitInput:      true
+xterm*scrollTtyKeypress:  true
+xterm*scrollTtyOutput:    false
+xterm*scrollBar:          false
+xterm*rightScrollBar:     false
+xterm*loginShell:         true
+xterm*jumpScroll:         true
+xterm*multiScroll:        true
+xterm*toolBar:            false
+xterm*wideChars: true
+xterm*utmpInhibit:      true
+xterm*locale:              true
+xterm*cursorColor: white
+xterm*cursorBlink: true
+xterm*eightBitOutput:       true
+xterm*mouseWheelScrollPage:   true
+xterm*termName: linux
+xterm*selectToClipboard: true
+xterm*utf8: 1
+
+! Xpdf
+!-----
+
+xdf*enableFreetype:    yes
+xpdf*antialias:         yes
+xpdf*foreground:        black
+xpdf*background:        white
+xpdf*urlCommand:        /usr/bin/firefox %s
+
+! urxvt settings
+!---------------
+
+urxvt*geometry: 85x25
+urxvt*background: black
+urxvt*foreground: white
+urxvt*title: terminal
+urxvt*saveLines: 10000
+urxvt*font: xft:monospace:size=13
+urxvt*dynamicColors:      true
+urxvt*eightBitInput:      true
+urxvt*scrollTtyKeypress:  true
+urxvt*scrollTtyOutput:    false
+urxvt*scrollBar:          false
+urxvt*rightScrollBar:     false
+urxvt*loginShell:         true
+urxvt*jumpScroll:         true
+urxvt*multiScroll:        true
+urxvt*toolBar:            false
+urxvt*wideChars: true
+urxvt*utmpInhibit:      true
+urxvt*locale:              true
+urxvt*cursorColor: white
+urxvt*cursorBlink: true
+urxvt*eightBitOutput:       true
+urxvt*mouseWheelScrollPage:   true
+urxvt*termName: linux
+urxvt*selectToClipboard: true
+
+! End Of File
