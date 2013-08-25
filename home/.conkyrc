@@ -61,7 +61,7 @@ gap_y 0
 
 # Prevent window from moving
 use_spacer none
-minimum_size 1280 0
+minimum_size 1024 0
 
 # mpd
 mpd_host localhost
@@ -70,6 +70,6 @@ music_player_interval 15
 
 ### Begin
 TEXT
-${alignc} ${color white}  $sysname $kernel on $machine   |  Uptime ${uptime}   |   CPU ${freq_g}GHz ${cpubar 6,80} ${cpu cpu0}%    |   RAM $mem/$memmax ${membar 6,80} ${memperc}%   |   SWAP $swap/$swapmax ${swapbar 6,80} ${swapperc}%
+${alignc} ${color white}  $sysname $kernel on $machine   |  Uptime ${uptime}   |   CPU ${freq_g}GHz ${cpubar 6,80} ${cpu cpu0}%    |   RAM $mem/$memmax ${membar 6,80} ${memperc}%
 ${alignc} ${color white}  Processes: $processes  Running: $running_processes   |   Networking [eth0] Down: ${downspeedf eth0} Kb/s Up: ${upspeedf eth0} Kb/s  |   / ${fs_type /} ${fs_free /}/${fs_size /} ${fs_free_perc /}%   |   /home ${fs_type /home} ${fs_free /home}/${fs_size /home} ${fs_free_perc /home}%
 #${alignc} ${color white}  Processes: $processes  Running: $running_processes   |   Networking [eth0] Down: ${downspeedf eth0} Kb/s Up: ${upspeedf eth0} Kb/s  |   / ${fs_type /} ${fs_free /}/${fs_size /} ${fs_free_perc /}%   |   /home ${fs_type /home} ${fs_free /home}/${fs_size /home} ${fs_free_perc /home}%   ${if_match "$mpd_status" == "Playing"}|   Mpd  ${mpd_smart}  ${endif}

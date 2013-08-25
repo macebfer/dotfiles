@@ -10,8 +10,8 @@ AlwaysInTerm = ssh telnet ftp lynx mc vi vim pine centericq perldoc man
 
 # Establece el tamaño de la ventana (excepto la altura)
 Width = 800
-Top = 850
-Left = 440
+Top = 650
+Left = 112
 
 # Tamaño del historial
 History = 1024
