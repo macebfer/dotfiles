@@ -1,0 +1,13 @@
+git init
+git add home
+git status
+git commit -m "First Commit"
+git remote add origin https://github.com/macebfer/dotfiles.git
+git push -u origin master
+
+git clone https://github.com/macebfer/dotfiles.git
+
+git status
+git add .
+git commit -m "VPNC config added"
+git push -u origin master 
