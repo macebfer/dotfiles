@@ -53,7 +53,7 @@ default_shade_color black
 default_outline_color black
 
 # Alineación del texto
-alignment top_middle
+alignment top_left
 
 # Separación de los bordes del escritorio
 gap_x 0
@@ -61,7 +61,7 @@ gap_y 0
 
 # Prevent window from moving
 use_spacer none
-minimum_size 1024 0
+minimum_size 1280 0
 
 # mpd
 mpd_host localhost

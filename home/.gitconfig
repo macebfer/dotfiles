@@ -3,7 +3,7 @@
 
 [core]
   pager="less -+$LESS -FRX"
-  editor="vim"
+  editor="nano"
   #filemode=false
 
 [user]
