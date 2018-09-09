@@ -33,10 +33,10 @@ export HISTFILESIZE=1048576
 export HISTCONTROL=ignorespace:ignoredups:ignoreboth:erasedups
 
 export HISTIGNORE="[bf]g:exit:logout:clear:reboot:halt"
-export HISTTIMEFORMAT=".-. %H:%M:%S %d %h %Y .-. "
+export HISTTIMEFORMAT="%Y/%m/%d %T "
 
-# Update Bash History in Realtime
-export PROMPT_COMMAND="history -n; history -a; $PROMPT_COMMAND" # a load of shit
+# After each command, save and reload history
+export PROMPT_COMMAND='history -a; history -c; history -r'
 
 # shopt -s cdable_vars      # if cd arg is not valid, assumes its a var defining a dir
 # shopt -s execfail         # Failed execs don't exit shell
@@ -186,9 +186,18 @@ fi
 
 ### Python Config
 #################
-export PYTHONSTARTUP="${HOME}/.pythonrc"
-export PYTHONIOENCODING='utf-8'
-export PYTHONDOCS='/usr/share/doc/python/html/'
+
+if (which python3 &>/dev/null); then
+  if [ -z ${PYTHONPATH+x} ]; then 
+    export PYTHONPATH=$(python -c "import site, os; print(os.path.join(site.USER_BASE, 'lib', 'python', 'site-packages'))")
+  else
+    export PYTHONPATH=$(python -c "import site, os; print(os.path.join(site.USER_BASE, 'lib', 'python', 'site-packages'))"):$PYTHONPATH
+  fi
+  export PYTHONSTARTUP="${HOME}/.pythonrc"
+  export PYTHONIOENCODING='utf-8'
+  export PYTHONDOCS='/usr/share/doc/python/html/'
+fi
+# add user base to python path
 
 ### Ruby Config
 ###############
