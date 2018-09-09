@@ -83,23 +83,4 @@ alias lc='ls -lhcr'              # sort by change time
 alias lu='ls -lhur'              # sort by access time
 alias lt='ls -lhtr'              # sort by date
 alias dir='ls -lhd */'
-
-if [ ! -z "${DISPLAY}" ]; then
-  alias meld='dbus-launch meld'
-  if (which gvim &> /dev/null); then
-    alias vim="vim -g"
-  fi
-fi
-
-if (which ps2pdf &> /dev/null); then
-  function man2pdf()
-  {
-    if [ ! -z ${1} ]; then
-      man -t ${1} | ps2pdf - > "${1}.pdf"
-    else
-      return 1
-    fi
-  }
-fi
-
 ### EOF

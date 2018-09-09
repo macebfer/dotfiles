@@ -27,12 +27,12 @@ if [ -d ${HOME}/Desktop ]; then
   export DESKTOP=$(cd ~/Desktop;pwd)
 fi
 # Configuring locales
-# echo 'LC_ALL=en_US.utf8' >> /etc/environment
-# echo 'LANG=en_US.utf8' >> /etc/environment
-# echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen
+# echo 'LC_ALL=en_GB.utf8' >> /etc/environment
+# echo 'LANG=en_GB.utf8' >> /etc/environment
+# echo 'en_GB.UTF-8 UTF-8' > /etc/locale.gen
 
-export LC_ALL=en_US.utf8
-export LANG=en_US.utf8
+export LC_ALL=en_GB.utf8
+export LANG=en_GB.utf8
 
 # Configure audio driver for SDL applications
 # echo "SDL_AUDIODRIVER=alsa" >> /etc/environment
@@ -54,6 +54,13 @@ fi
 if [ -d "${HOME}/.bin" ] ; then
   if ! (echo $PATH | grep -q "${HOME}/.bin") ; then
     PATH="${HOME}/.bin":"${PATH}"
+  fi
+fi
+
+# set PATH so it includes user's private .local/bin if it exists
+if [ -d "${HOME}/.local/bin" ] ; then
+  if ! (echo $PATH | grep -q "${HOME}/.local/bin") ; then
+    PATH="${HOME}/.local/bin":"${PATH}"
   fi
 fi
 

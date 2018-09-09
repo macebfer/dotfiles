@@ -32,11 +32,11 @@ export HISTFILESIZE=1048576
 ## erasedups: Elimina los comandos duplicados esten en el orden que sean dejando siempre el último ejecutado.
 export HISTCONTROL=ignorespace:ignoredups:ignoreboth:erasedups
 
-export HISTIGNORE="[bf]g:exit:logout:clear:reboot:halt:ll"
+export HISTIGNORE="[bf]g:exit:logout:clear:reboot:halt"
 export HISTTIMEFORMAT=".-. %H:%M:%S %d %h %Y .-. "
 
 # Update Bash History in Realtime
-# export PROMPT_COMMAND="history -n; history -a; $PROMPT_COMMAND" # a load of shit
+export PROMPT_COMMAND="history -n; history -a; $PROMPT_COMMAND" # a load of shit
 
 # shopt -s cdable_vars      # if cd arg is not valid, assumes its a var defining a dir
 # shopt -s execfail         # Failed execs don't exit shell

@@ -5,4 +5,5 @@
 # Executed by startx (run your window manager from here)
 #
 
-exec openbox-session
+exec startxfce4
+

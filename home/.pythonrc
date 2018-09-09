@@ -10,8 +10,10 @@ import sys
 (major, minor, micro, releaselevel, serial) = sys.version_info
 
 if (major == 3):
+  str_version = str(major) + "." + str(minor) + "." + str(micro)
+  str_history_filename = ".python_v" + str_version + "_history"
   config_file = os.environ.get('PYTHONSTARTUP')
-  history_file = os.path.expanduser('.python3_history')
+  history_file = os.path.expanduser(str_history_filename)
 
   # Write History
   def save_history(histfile=history_file):
