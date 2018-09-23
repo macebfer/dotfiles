@@ -41,9 +41,8 @@ set backup
 ## Do case sensitive searches by default.
 # set casesensitive
 
-## Constantly display the cursor position in the statusbar.  Note that
-## this overrides "quickblank".
-set const
+## Constantly display the cursor position in the statusbar. 
+set constantshow
 
 ## Use cut to end of line by default.
 # set cut
@@ -168,6 +167,8 @@ set tabstospaces
 ## characters as parts of words.
 # set wordbounds
 
+## show line numbers
+set linenumbers
 
 ## Color setup
 ##
